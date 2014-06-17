@@ -67,6 +67,27 @@ else
     group node['wordpress']['install']['group']
     tar_flags [ '--strip-components 1' ]
   end
+  directory "#{node['wordpress']['dir']}/wp-content/uploads" do
+    action :create
+    recursive true
+    owner node['wordpress']['install']['user']
+    group node['wordpress']['install']['group']
+    mode  '00766'
+  end
+  directory "#{node['wordpress']['dir']}/wp-content/plugins" do
+    action :create
+    recursive true
+    owner node['wordpress']['install']['user']
+    group node['wordpress']['install']['group']
+    mode  '00766'
+  end
+  directory "#{node['wordpress']['dir']}/wp-content/themes" do
+    action :create
+    recursive true
+    owner node['wordpress']['install']['user']
+    group node['wordpress']['install']['group']
+    mode  '00766'
+  end
 end
 
 template "#{node['wordpress']['dir']}/wp-config.php" do
